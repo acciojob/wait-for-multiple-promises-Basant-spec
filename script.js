@@ -1,8 +1,9 @@
 // Select the table body where rows will be added
 const output = document.getElementById("output");
 
-// Add the default 'Loading...' row
+// Add the default 'Loading...' row with an id
 const loadingRow = document.createElement("tr");
+loadingRow.id = "loading"; // Add the required id
 loadingRow.innerHTML = `<td colspan="2">Loading...</td>`;
 output.appendChild(loadingRow);
 
@@ -23,8 +24,8 @@ Promise.all(promises).then((results) => {
   // Calculate total time taken
   const totalTime = (performance.now() - startTime) / 1000;
 
-  // Clear the 'Loading...' row
-  output.innerHTML = "";
+  // Remove the 'Loading...' row
+  document.getElementById("loading").remove();
 
   // Populate rows for each resolved promise
   results.forEach((result) => {
